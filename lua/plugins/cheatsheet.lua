@@ -1,65 +1,33 @@
--- Personal cheat sheet float. Does NOT touch <leader>sk (FzfLua keymaps).
+-- <leader>sk → Keymaps (Snacks UI) with switch to personal cheat sheets.
+-- <leader>sC stays Commands (do not override).
 return {
   {
     "folke/which-key.nvim",
     optional = true,
     opts = {
       spec = {
-        { "<leader>sC", desc = "Cheat Sheet (personal)" },
+        { "<leader>sk", desc = "Keymaps / Cheat Sheet" },
       },
+    },
+  },
+  {
+    "ibhagwan/fzf-lua",
+    optional = true,
+    keys = {
+      -- Disable FzfLua's sk so our Snacks hybrid mapping wins.
+      { "<leader>sk", false },
     },
   },
   {
     "folke/snacks.nvim",
     keys = {
+      -- Override snacks/LazyVim sk; keep sC as Commands.
       {
-        "<leader>sC",
+        "<leader>sk",
         function()
-          local path = vim.fn.stdpath("config") .. "/CHEATSHEET.md"
-          if vim.fn.filereadable(path) == 0 then
-            vim.notify("Cheat sheet missing: " .. path, vim.log.levels.ERROR)
-            return
-          end
-          Snacks.win({
-            file = path,
-            title = " Cheat Sheet ",
-            title_pos = "center",
-            border = "rounded",
-            width = 0.72,
-            height = 0.86,
-            backdrop = 60,
-            ft = "markdown",
-            wo = {
-              wrap = true,
-              linebreak = true,
-              cursorline = true,
-              number = false,
-              relativenumber = false,
-              signcolumn = "no",
-              conceallevel = 2,
-              spell = false,
-            },
-            bo = {
-              modifiable = false,
-              readonly = true,
-            },
-            keys = {
-              q = "close",
-              ["<Esc>"] = "close",
-              e = {
-                function(self)
-                  self:close()
-                  vim.cmd.edit(path)
-                end,
-                desc = "Edit cheat sheet",
-                mode = { "n" },
-              },
-            },
-            footer = "  q/Esc close · e edit file · <leader>sk = search all keymaps  ",
-            footer_pos = "center",
-          })
+          require("config.cheatsheet").open_keymaps()
         end,
-        desc = "Cheat Sheet (personal)",
+        desc = "Keymaps / Cheat Sheet",
       },
     },
   },
