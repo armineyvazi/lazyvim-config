@@ -25,6 +25,25 @@ nvim
 
 After first launch, run `:LazyHealth` to verify plugins.
 
+## Language LSPs
+
+`lua/plugins/lsp-system.lua` keeps Go/C/C++/Rust/Java/Lua working when Mason is flaky:
+
+| Lang | Server | Source |
+|------|--------|--------|
+| Go | `gopls` | system (`go install`) |
+| C / C++ | `clangd` | system + `lang.clangd` extra |
+| Rust | `rust-analyzer` | rustup + `lang.rust` |
+| Java | `jdtls` | Mason + Homebrew `openjdk@21` |
+| Lua | `lua_ls` | Mason |
+
+```bash
+# one-time toolchain pieces used on this machine
+go install golang.org/x/tools/gopls@latest
+rustup component add rust-analyzer
+brew install openjdk@21
+```
+
 ## Customize
 
 - Options / keymaps / autocmds → `lua/config/`
