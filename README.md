@@ -44,6 +44,15 @@ rustup component add rust-analyzer
 brew install openjdk@21
 ```
 
+## Cheat sheet
+
+| Key | Opens |
+|-----|--------|
+| `<leader>sk` | Built-in keymap search (unchanged) |
+| `<leader>sC` | Personal cheat sheet float (`CHEATSHEET.md`) |
+
+Press `e` in the float to edit the sheet; `q` / `Esc` closes it.
+
 ## Customize
 
 - Options / keymaps / autocmds → `lua/config/`
