@@ -44,21 +44,6 @@ rustup component add rust-analyzer
 brew install openjdk@21
 ```
 
-## Cheat sheet (inside `<leader>sk`)
-
-`<leader>sC` stays **Commands**. Your sheets live under `cheatsheets/*.md`.
-
-| Key | Where | Action |
-|-----|--------|--------|
-| `<leader>sk` | normal | Keymaps picker (Snacks UI) |
-| `<a-c>` | inside sk | Switch to **personal cheat sheet** |
-| `<a-s>` | inside sk / sheet | Switch between cheat sheet files |
-| `<a-k>` | inside sheet | Back to keymaps |
-| `<a-e>` | inside sheet | Edit the markdown sheet |
-| `<a-g>` / `<a-b>` | inside sk | Toggle global / buffer keymaps |
-
-Add more sheets by creating `cheatsheets/name.md` with markdown tables.
-
 ## Customize
 
 - Options / keymaps / autocmds → `lua/config/`
