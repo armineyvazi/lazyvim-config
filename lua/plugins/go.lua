@@ -1,7 +1,5 @@
--- Go auto-import:
--- 1) Completion (gopls completeUnimported) adds import when you accept a symbol
--- 2) <leader>cf / format-on-save runs goimports (add missing, drop unused)
--- 3) <leader>ci organizes imports via gopls
+-- Go auto-import settings (shared keys live in lang-unified-keys.lua).
+-- Completion + goimports on <leader>cf; organize via shared <leader>ci.
 return {
   {
     "neovim/nvim-lspconfig",
@@ -22,32 +20,7 @@ return {
               },
             },
           },
-          keys = {
-            {
-              "<leader>ci",
-              function()
-                vim.lsp.buf.code_action({
-                  context = {
-                    only = { "source.organizeImports" },
-                    diagnostics = {},
-                  },
-                  apply = true,
-                })
-              end,
-              desc = "Organize Go Imports",
-            },
-          },
         },
-      },
-    },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        go = { "goimports", "gofumpt" },
       },
     },
   },
